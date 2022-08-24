@@ -4,16 +4,20 @@
     --color-light-primary: #393A4C;
     --color-light-secondary: #9394A5;
     --color-light-blue: #3A7BFD;
-    --color-light-gray: #E4E5F1;
+    --color-light-grayish: #E4E5F1;
+    --color-light-gray: #FAFAFA;
     --color-light-white: #FFFFFF;
 
     --color-dark-primary: #CACDE8;
     --color-dark-blue: #161722; 
 }
 
+* {
+    box-sizing: border-box;
+}
+
 html,
 body {
-    box-sizing: border-box;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 18px;
     margin: 0;
