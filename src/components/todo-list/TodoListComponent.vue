@@ -5,15 +5,18 @@
             :key="todo.id"
             :todoItem = todo
         />
+        <todo-footer-component :totalItems="totalItemsLeft" />
     </div>
 </template>
 
 <script>
 import TodoItemComponent from "@/components/todo-item/TodoItemComponent.vue";
+import TodoFooterComponent from "@/components/todo-footer/TodoFooterComponent.vue";
 export default {
     name: "TodoListComponent",
     components: {
         TodoItemComponent,
+        TodoFooterComponent
     },
     data() {
         return {
@@ -39,6 +42,11 @@ export default {
             ],
         };
     },
+    computed: {
+        totalItemsLeft () {
+            return this.todoList.filter(todo => !todo.isDone).length;
+        }
+    }
 };
 </script>
 

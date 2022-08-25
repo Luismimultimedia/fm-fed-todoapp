@@ -7,7 +7,10 @@
             :checked="todoItem.isDone"
              @change="todo.isDone = !todo.isDone"
         />
-        <p class="todo__description">{{ todoItem.title }}</p>
+        <p :class="`todo__description ${todoItem.isDone ? 'checked' : ''}`">{{ todoItem.title }}</p>
+        <button v-if="todo.isDone" class="todo__button-container">
+            <img class="todo__button-icon" src="@/assets/images/icon-close.png" alt="close icon" />
+        </button>
     </div>
 </template>
 
@@ -37,13 +40,12 @@ export default {
 .todo {
     &__container {
         align-items: center;
+        border-bottom: 2px solid var(--color-light-grayish);
         color: var(--color-light-primary);
         display: flex;
-        height: 2.5rem;
+        height: 52px;
         padding: 1rem;
         width: 100%;
-        height: 52px;
-        border-bottom: 2px solid var(--color-light-grayish);
     }
 
     &__checkbox {
@@ -65,6 +67,35 @@ export default {
         font-family: "Josefin Sans", sans-serif;
         font-size: 0.8rem;
         font-weight: 400;
+
+        &.checked {
+            text-decoration: line-through;
+            color: var(--color-light-grayish);
+        }
     }
+
+    &__button{ 
+            &-container {
+                appearance: none;
+                background-color: transparent;
+                border: none;
+                height: 20px;
+                margin-left: auto;
+                padding: 0px;
+                width: 20px;
+                cursor: pointer;
+                padding: 4px;
+                border-radius: 5px;
+
+                &:hover {
+                    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.05), 0 12px 20px 0 rgba(0,0,0,0.05);
+                }
+            }
+
+            &-icon {
+                width: 100%;
+                height: 100%;
+            }
+        }
 }
 </style>
