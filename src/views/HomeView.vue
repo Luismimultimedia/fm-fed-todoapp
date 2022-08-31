@@ -8,9 +8,10 @@
 </template>
 
 <script>
-import HeaderComponent from "@/components/header/HeaderComponent";
-import TodoListComponent from "@/components/todo-list/TodoListComponent";
+import HeaderComponent from "@/components/header/HeaderComponent.vue";
+import TodoListComponent from "@/components/todo-list/TodoListComponent.vue";
 import TabBarComponent from "@/components/tab-bar/TabBarComponent.vue";
+import { mapActions } from 'vuex';
 
 export default {
     name: "HomeView",
@@ -19,6 +20,12 @@ export default {
         TodoListComponent,
         TabBarComponent,
     },
+    async mounted() {
+        this.loadTodoList();
+    },
+    methods: {
+        ...mapActions('todo', ['loadTodoList'])
+    }
 };
 </script>
 

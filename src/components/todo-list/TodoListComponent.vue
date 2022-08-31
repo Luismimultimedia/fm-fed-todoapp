@@ -12,40 +12,18 @@
 <script>
 import TodoItemComponent from "@/components/todo-item/TodoItemComponent.vue";
 import TodoFooterComponent from "@/components/todo-footer/TodoFooterComponent.vue";
+import { mapState } from 'vuex';
 export default {
     name: "TodoListComponent",
     components: {
         TodoItemComponent,
         TodoFooterComponent
     },
-    data() {
-        return {
-            todoList: [
-                {
-                    id: 1,
-                    title: "Wake up",
-                    status: true,
-                    isDone: false,
-                },
-                {
-                    id: 2,
-                    title: "Take a shower",
-                    status: true,
-                    isDone: false,
-                },
-                {
-                    id: 3,
-                    title: "Eat breakfast",
-                    status: true,
-                    isDone: false,
-                },
-            ],
-        };
-    },
     computed: {
         totalItemsLeft () {
             return this.todoList.filter(todo => !todo.isDone).length;
-        }
+        },
+        ...mapState('todo', ['todoList'])
     }
 };
 </script>

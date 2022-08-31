@@ -1,5 +1,12 @@
+import { getTodoList } from "@/apis/todo";
+
 export const loadTodoList = async({ commit }) => {
-    return commit;
+    try {
+        const todoList = await getTodoList();
+        commit('setTodoList', todoList)
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 export const createTodo = async({ commit }) => {

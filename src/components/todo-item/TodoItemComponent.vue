@@ -7,7 +7,7 @@
             :checked="todoItem.isDone"
              @change="todo.isDone = !todo.isDone"
         />
-        <p :class="`todo__description ${todoItem.isDone ? 'checked' : ''}`">{{ todoItem.title }}</p>
+        <p :class="`todo__description ${todoItem.isDone ? 'checked' : ''}`">{{ todoItem.description }}</p>
         <button v-if="todo.isDone" class="todo__button-container">
             <img class="todo__button-icon" src="@/assets/images/icon-close.png" alt="close icon" />
         </button>
@@ -22,7 +22,7 @@ export default {
             type: Object,
             default: () => ({
                 id: 1,
-                title: "Create a new todo",
+                description: "Create a new todo",
                 status: true,
                 isDone: false,
             }),

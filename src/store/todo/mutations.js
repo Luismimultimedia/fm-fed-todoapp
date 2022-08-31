@@ -1,5 +1,5 @@
-export const setTodoList = ( state ) => {
-    return state;
+export const setTodoList = ( state, payload ) => {
+    state.todoList = payload;
 }
 
 export const addTodo = ( state ) => {
