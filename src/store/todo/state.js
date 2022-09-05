@@ -1,4 +1,5 @@
 export default () => ({
     isLoading: false,
-    todoList: []
+    todoList: [],
+    activeTab: 'All'
 });

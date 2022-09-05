@@ -5,16 +5,17 @@
             :id="todoItem.id"
             type="checkbox"
             :checked="todoItem.isDone"
-             @change="todo.isDone = !todo.isDone"
+             @change="updateTodo({...todoItem, isDone: !todoItem.isDone})"
         />
         <p :class="`todo__description ${todoItem.isDone ? 'checked' : ''}`">{{ todoItem.description }}</p>
-        <button v-if="todo.isDone" class="todo__button-container">
+        <button v-if="todoItem.isDone" class="todo__button-container" @click="deleteTodo(todoItem.id)">
             <img class="todo__button-icon" src="@/assets/images/icon-close.png" alt="close icon" />
         </button>
     </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     name: "TodoItemComponent",
     props: {
@@ -32,6 +33,9 @@ export default {
         return {
             todo: this.todoItem
         }
+    },
+    methods: {
+        ...mapActions('todo', ['updateTodo', 'deleteTodo'])
     }
 };
 </script>

@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     name: "FormComponent",
     data() {
@@ -17,9 +18,11 @@ export default {
         }
     },
     methods: {
+        ...mapActions('todo', ['createTodo']),
         onsubmitNewTodo (e) {
             e.preventDefault();
-            console.log(this.newTodo);
+            const newTodoBody = { description: this.newTodo }
+            this.createTodo(newTodoBody);
             this.newTodo = '';
         }
     }

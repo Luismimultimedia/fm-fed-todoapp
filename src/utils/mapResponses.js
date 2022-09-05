@@ -4,13 +4,12 @@
  */
 const mapTodoListResponse = (todoList) => {
     return todoList.map(todo => {
-        const { 'creation_date': creationDate, 'is_done': isDone } = todo;
-        delete todo['creation_date'];
-        delete todo['is_done'];
         return {
-            ...todo,
-            creationDate,
-            isDone
+            id: todo['id'],
+            description: todo['description'],
+            status: todo['status'],
+            creationDate: todo['creation_date'],
+            isDone: todo['is_done']
         }
     });
 }

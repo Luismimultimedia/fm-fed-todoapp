@@ -1,13 +1,14 @@
 <template>
     <div class="todo-footer__container">
         <p>{{ descriptionItemsLeft }}</p>
-        <button class="todo-footer__btn-clear">
+        <button @click="clearTodoList" class="todo-footer__btn-clear">
             <p>Clear completed</p>
         </button>
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
     name: "TodoFooterComponent",
     props: {
@@ -17,9 +18,16 @@ export default {
         },
     },
     computed: {
+        ...mapGetters('todo', ['getCompletedTodos']),
         descriptionItemsLeft() {
             return `${ this.totalItems } item${ this.totalItems > 1 ? "s" : "" } left`
         }
+    },
+    methods: {
+        ...mapActions('todo', ['deleteCompletedTodos']),
+        clearTodoList() {
+            this.deleteCompletedTodos(this.getCompletedTodos.map(( todo ) => todo.id));
+        },
     }
 };
 </script>

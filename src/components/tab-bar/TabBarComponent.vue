@@ -1,23 +1,20 @@
 <template>
     <ul class="tab__container">
-        <li :class="`tab__option ${activeTab === 'All' ? 'tab__option-active' : ''}`" @click="onSelectTab('All')">All</li>
-        <li :class="`tab__option ${activeTab === 'Active' ? 'tab__option-active' : ''}`" @click="onSelectTab('Active')">Active</li>
-        <li :class="`tab__option ${activeTab === 'Completed' ? 'tab__option-active' : ''}`" @click="onSelectTab('Completed')">Completed</li>
+        <li :class="`tab__option ${getActiveTab === 'All' ? 'tab__option-active' : ''}`" @click="changeActiveTab('All')">All</li>
+        <li :class="`tab__option ${getActiveTab === 'Active' ? 'tab__option-active' : ''}`" @click="changeActiveTab('Active')">Active</li>
+        <li :class="`tab__option ${getActiveTab === 'Completed' ? 'tab__option-active' : ''}`" @click="changeActiveTab('Completed')">Completed</li>
     </ul>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
     name: "TabBarComponent",
-    data() {
-        return {
-            activeTab: "All"
-        }
+    computed: {
+        ...mapGetters('todo', ['getActiveTab'])
     },
     methods: {
-        onSelectTab(tabName) {
-            this.activeTab = tabName;
-        }
+        ...mapActions('todo', ['changeActiveTab'])
     }
 }
 </script>
