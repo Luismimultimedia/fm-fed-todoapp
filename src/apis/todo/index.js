@@ -1,9 +1,11 @@
 const { mapTodoListResponse } = require("@/utils/mapResponses");
 
+const urlBase = 'https://todo-app-fm-bed.herokuapp.com';
+
 // get todo list service
 const getTodoListService = async () => {
     let todoList;
-    const response = await fetch('http://localhost:8000/api/v1/todos/7MW8RsMqVu90K0W1rGP6');
+    const response = await fetch(`${urlBase}/api/v1/todos/7MW8RsMqVu90K0W1rGP6`);
 
     if(response.status === 200) {
         todoList = mapTodoListResponse(await response.json());
@@ -17,7 +19,7 @@ const getTodoListService = async () => {
 // add todo item service
 const addTodoService = async (data) => {
 
-    const response = await fetch('http://localhost:8000/api/v1/todos/create',
+    const response = await fetch(`${urlBase}/api/v1/todos/create`,
     {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -31,7 +33,7 @@ const addTodoService = async (data) => {
 
 // update state of the todo item service
 const updateTodoStatusService = async(data) => {
-    const response = await fetch('http://localhost:8000/api/v1/todos/update',
+    const response = await fetch(`${urlBase}/api/v1/todos/update`,
     {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -45,7 +47,7 @@ const updateTodoStatusService = async(data) => {
 
 // delete todo item service
 const deleteTodoService = async(todoId) => {
-    const response = await fetch(`http://localhost:8000/api/v1/todos/delete/${todoId}`, { method: 'DELETE'});
+    const response = await fetch(`${urlBase}/api/v1/todos/delete/${todoId}`, { method: 'DELETE'});
     if (response.status !== 200) {
         throw 'Something happned with the service, we coundnt delete the todo item...'
     }
